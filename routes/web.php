@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+
+
+
+Route::get('/login', [AuthController::class, 'show'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+
+
+Route::middleware([
+    'auth'
+])->group(function () {
+    Route::get('home', function () {
+        return Inertia\Inertia::render('Home/Index');
+    })->name('home');
 });
