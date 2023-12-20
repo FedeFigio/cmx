@@ -27,6 +27,7 @@ class TrackSeeder extends Seeder
                     'latitude' => $trackData['latitude'],
                     'longitude' => $trackData['longitude'],
                     'name' => $trackData['name'],
+                    'description' => $trackData['description'],
                 ]);
 
         }
