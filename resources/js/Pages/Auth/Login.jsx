@@ -1,12 +1,12 @@
-import { useForm } from '@inertiajs/inertia-react';
 import { router } from '@inertiajs/react';
 import React, { useState } from 'react';
 
-const Login = (props) => {
-
+const Login = ({ pino }) => {
+    console.log(pino)
     const [values, setValues] = useState({
         email: "",
         password: "",
+        remember: false,
     })
 
     function handleChange(e) {
@@ -20,38 +20,32 @@ const Login = (props) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(values);
         router.post(route("login.attempt"), values)
     }
 
-    return <div className="w-full max-w-xs">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-            <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                    email
-                </label>
-                <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="email" />
+    return (
+        <div className='dark'>
+            <div className='h-screen flex items-center dark:bg-gray-700'>
+                <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
+                    <div className="mb-5">
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                        <input onChange={handleChange} type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+                    </div>
+                    <div className="mb-5">
+                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                        <input onChange={handleChange} type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    </div>
+                    <div className="flex items-start mb-5">
+                        <div className="flex items-center h-5">
+                            <input onChange={handleChange} id="remember" type="checkbox" checked={values.remember} value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+                        </div>
+                        <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+                    </div>
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                </form>
             </div>
-            <div className="mb-6">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    Password
-                </label>
-                <input onChange={handleChange} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
-                <p className="text-red-500 text-xs italic">Please choose a password.</p>
-            </div>
-            <div className="flex items-center justify-between">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Sign In
-                </button>
-                <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                    htmlForgot Password?
-                </a>
-            </div>
-        </form>
-        <p className="text-center text-gray-500 text-xs">
-            &copy;2020 Acme Corp. All rights reserved.
-        </p>
-    </div>
+        </div>)
+
 };
 
 export default Login;

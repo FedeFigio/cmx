@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             'name' => "admin",
             'email' => "admin@admin.it",
             'email_verified_at' => now(),
-            'password' =>Hash::make('password'),
+            'password' =>Hash::make('admin'),
             'remember_token' => Str::random(10),
          ]);
+         $this->call(TrackSeeder::class);
     }
 }
