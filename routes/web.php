@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TrackController;
 use App\Models\Track;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,8 @@ Route::middleware([
     })->name('home');
 
     Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+    Route::resource('/tracks', TrackController::class);
 
     Route::get('/profile', function () {
         return Inertia\Inertia::render('Profile/Index');

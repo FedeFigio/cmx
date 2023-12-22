@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTrackRequest;
 use App\Http\Requests\UpdateTrackRequest;
 use App\Models\Track;
+use Inertia\Inertia;
 
 class TrackController extends Controller
 {
@@ -37,7 +38,7 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
-        //
+        return Inertia::render('Tracks/Show', compact('track'));
     }
 
     /**

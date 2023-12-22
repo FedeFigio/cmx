@@ -14,10 +14,7 @@ class TrackSeeder extends Seeder
      */
     public function run(): void
     {
-        // Percorso del file JSON esterno
-        $jsonPath = database_path('seeders/track.json');
-
-        // Leggi il contenuto del file JSON
+        $jsonPath = database_path('seeders/tracks.json');
         $jsonData = json_decode(File::get($jsonPath), true);
 
         foreach ($jsonData as $trackData) {
