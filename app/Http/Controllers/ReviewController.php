@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTrackRequest;
-use App\Http\Requests\UpdateTrackRequest;
-use App\Models\Track;
-use Inertia\Inertia;
+use App\Models\Review;
+use Illuminate\Http\Request;
 
-class TrackController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +26,7 @@ class TrackController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTrackRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,19 +34,15 @@ class TrackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Track $track)
+    public function show(Review $review)
     {
-        $reviews = $track->reviews()
-            ->with('user')
-            ->latest()
-            ->take(5)->get();
-        return Inertia::render('Tracks/Show', compact('track', 'reviews'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Track $track)
+    public function edit(Review $review)
     {
         //
     }
@@ -56,7 +50,7 @@ class TrackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTrackRequest $request, Track $track)
+    public function update(Request $request, Review $review)
     {
         //
     }
@@ -64,7 +58,7 @@ class TrackController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Track $track)
+    public function destroy(Review $review)
     {
         //
     }

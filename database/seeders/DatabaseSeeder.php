@@ -14,15 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-//         \App\Models\User::factory(10)->create();
+        //         \App\Models\User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
+        \App\Models\User::create([
             'name' => "admin",
             'email' => "admin@admin.it",
             'email_verified_at' => now(),
-            'password' =>Hash::make('admin'),
+            'password' => Hash::make('admin'),
             'remember_token' => Str::random(10),
-         ]);
-         $this->call(TrackSeeder::class);
+        ]);
+        \App\Models\User::factory(10)->create();
+
+        $this->call(TrackSeeder::class);
+        \App\Models\Review::factory(10)->create();
     }
 }
